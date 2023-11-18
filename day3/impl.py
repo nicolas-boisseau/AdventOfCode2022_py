@@ -38,22 +38,16 @@ def process(part, filename):
 
 def findCommonLetters(part1, part2):
     for c in part1:
-        for c2 in part2:
-            if c == c2:
-                print(f"Found {c} in both parts ! Adding {score(c)} to final score...")
-                return c
+        if c in part2:
+            print(f"Found {c} in both parts ! Adding {score(c)} to final score...")
+            return c
 
 def findCommonLetters2(part1, part2, part3):
 
     for c in part1:
-        currentCommon = ""
-        for c2 in part2:
-            if c == c2:
-                currentCommon = c
-        for c3 in part3:
-            if c == c3 and c == currentCommon:
-                print(f"Found {c} in three parts ! Adding {score(c3)} to final score...")
-                return c3
+        if c in part2 and c in part3:
+            print(f"Found {c} in three parts ! Adding {score(c)} to final score...")
+            return c
 
 def score(letter):
     code = ord(letter)
