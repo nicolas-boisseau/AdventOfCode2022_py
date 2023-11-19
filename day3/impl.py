@@ -13,12 +13,12 @@ def process(part, filename):
 
     print("Input file OK ! Starting processing...")
     with open(filename) as f:
-        lines = f.readlines()
+        lines = [l.replace("\n", "") for l in f.readlines()]
 
         finalScore_part1 = 0
         finalScore_part2 = 0
         for i, line in enumerate(lines):
-            line = line.replace("\n", "")
+            assert len(line) % 2 == 0
 
             if part == 1:
                 part1 = line[0:math.ceil(len(line)/2)]
@@ -26,9 +26,9 @@ def process(part, filename):
 
                 finalScore_part1 += score(findCommonLetters(part1, part2))
             elif (i+1) % 3 == 0:
-                part1 = lines[i-2].replace("\n", "")
-                part2 = lines[i-1].replace("\n", "")
-                part3 = lines[i].replace("\n", "")
+                part1 = lines[i-2]
+                part2 = lines[i-1]
+                part3 = lines[i]
 
                 finalScore_part2 += score(findCommonLetters2(part1, part2, part3))
 
