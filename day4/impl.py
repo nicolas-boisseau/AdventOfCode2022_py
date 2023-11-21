@@ -20,13 +20,11 @@ def process(part, filename):
         input_pattern = re.compile(r"(\d+)-(\d+),(\d+)-(\d+)")
         for line in lines:
             m = input_pattern.match(line)
-            pair1 = (int(m.group(1)), int(m.group(2)))
-            pair2 = (int(m.group(3)), int(m.group(4)))
 
-            a1 = pair1[0]
-            b1 = pair1[1]
-            a2 = pair2[0]
-            b2 = pair2[1]
+            a1 = int(m.group(1))
+            b1 = int(m.group(2))
+            a2 = int(m.group(3))
+            b2 = int(m.group(4))
 
             if part == 1:
                 if a2 <= a1 <= b2 and a2 <= b1 <= b2:
