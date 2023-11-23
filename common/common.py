@@ -1,4 +1,5 @@
 import os
+import re
 from urllib import request
 
 def DownloadIfNotExists(url):
@@ -15,3 +16,11 @@ def DownloadIfNotExists(url):
     with request.urlopen(r) as response, open(file_name, 'wb') as out_file:
         data = response.read()
         out_file.write(data)
+
+def DetectCurrentDay():
+    current_dir = os.getcwd()
+    day_pattern = re.compile(r"day(\d+)")
+    match = day_pattern.findall(current_dir)
+    if len(match) == 0:
+        return 0
+    return int(match[0])
