@@ -1,5 +1,6 @@
 import itertools
 import os.path
+from py_linq import Enumerable
 
 from common.common import DownloadIfNotExists, DetectCurrentDay
 
@@ -35,8 +36,9 @@ def DetectPacket(input, packetSize):
     return i + packetSize
 
 def IsMarker(str, packetSize):
-    array = sorted([letter for letter in str])
-    return packetSize == len([k for k, v in itertools.groupby(array)])
+    # array = sorted([letter for letter in str])
+    # return packetSize == len([k for k, v in itertools.groupby(array)])
+    return Enumerable(str).distinct().count() == packetSize
 
 if __name__ == '__main__':
     process(1, "sample.txt")

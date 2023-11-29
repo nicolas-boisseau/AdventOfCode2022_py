@@ -24,3 +24,7 @@ def DetectCurrentDay():
     if len(match) == 0:
         return 0
     return int(match[0])
+
+def Capture(inputPattern, input):
+    m = re.compile(inputPattern).match(input)
+    return m.groups()
